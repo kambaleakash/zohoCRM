@@ -3,15 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.zohocrm.testscript.Demo">
+      <class name="com.zohocrm.testscript.check">
         <methods>
-          <include name="openBrowser"/>
-          <include name="logOut"/>
-          <include name="closeBrowser"/>
-          <include name="demo"/>
-          <include name="signIn"/>
+          <include name="check"/>
         </methods>
-      </class> <!-- com.zohocrm.testscript.Demo -->
+      </class> <!-- com.zohocrm.testscript.check -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

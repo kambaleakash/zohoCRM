@@ -5,8 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners(com.zohocrm.generic.ListenerImplementation.class)
 public class CreateCampaignPage
 {
 	@FindBy(xpath = "//option[@value='Email']")
@@ -69,12 +71,46 @@ public class CreateCampaignPage
 		return cancelbtn;
 	}
 	
-	@Test
+	
+	public static String getEmail() 
+	{
+		return email;
+	}
+
+	public static String getAdvertisement() 
+	{
+		return advertisement;
+	}
+
+	public static String getBannerAds() 
+	{
+		return bannerAds;
+	}
+
+	public static String getTeleMarketing() 
+	{
+		return teleMarketing;
+	}
+
+	public WebElement getTypeList() 
+	{
+		return typeList;
+	}
+
+	
 	public void type(String st)
 	{
 	Select s=new Select(typeList);
 	s.selectByVisibleText(st);
 	}
+
+	public void setSavebtn() 
+	{
+		savebtn.click();
+	}
+	
+	
+	
 	
 	
 	

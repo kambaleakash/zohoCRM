@@ -6,30 +6,75 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.poi.EncryptedDocumentException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import com.zohocrm.generic.BaseClass;
 import com.zohocrm.generic.FileLib;
+import com.zohocrm.pom.CampaignDetailsPage;
 import com.zohocrm.pom.CreateCampaignPage;
 import com.zohocrm.pom.DisplayingCustomerPage;
 import com.zohocrm.pom.HomePage;
 import com.zohocrm.pom.StartDatePage;
 
-public class Demo extends BaseClass
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+@Listeners(com.zohocrm.generic.ListenerImplementation.class)
+public class CampaignsModule extends BaseClass
 {
 	@Test
-	public void demo() throws EncryptedDocumentException, IOException, InterruptedException
+	public void createCampaign() throws EncryptedDocumentException, IOException, InterruptedException
 	{
-		Reporter.log("Hello",true);
 		HomePage h=new HomePage(driver);
 		h.setCampaignsTab(h.getCampaignsTab());
 		DisplayingCustomerPage d=new DisplayingCustomerPage(driver);
 		d.setNewCampaignbtn();
 
+		
 		CreateCampaignPage c=new CreateCampaignPage(driver);
-		c.getCampNametbx().sendKeys("Akash");
-		c.getStartDateClndr().click();
+		
+		String ExpectCampName=""+Math.random();
+		c.getCampNametbx().sendKeys(ExpectCampName);
+		c.type(c.getAdvertisement());
+		
+//		c.getStartDateClndr().click();
+//		Set<String> awh = driver.getWindowHandles();
+//		for(String st : awh)
+//		{
+//			driver.switchTo().window(st);
+//			if(driver.getTitle().equals("Start Date"))
+//			{
+//				StartDatePage s=new StartDatePage(driver);
+//				s.getFifteen().click();
+//			}
+//		}
+		
+		c.setSavebtn();
+		
+		CampaignDetailsPage c1=new CampaignDetailsPage(driver);
+		
+		SoftAssert s=new SoftAssert();
+	//	Assert.fail();
+		s.assertEquals(c1.getActCampName().getText(), ExpectCampName);
+		s.assertAll();
+		
+		
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+	//	c.getStartDateClndr().click();
 
 //		Set<String> awh = driver.getWindowHandles();
 //		for(String st: awh)
